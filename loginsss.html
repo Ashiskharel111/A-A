@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Admin Portal - Ashis & Ayaka Wedding</title>
+  <link rel="icon" href="assets/icon.svg" type="image/svg+xml" sizes="any">
+  <!-- Main Stylesheet -->
+  <link rel="stylesheet" href="style.css">
+  <script>
+    // Instant Session Unlock Check (Runs before DOM render finishes)
+    if (sessionStorage.getItem('admin_unlocked') === 'true') {
+      const style = document.createElement('style');
+      style.innerHTML = '#admin-passcode-overlay { display: none !important; } #admin-workspace { display: block !important; }';
+      document.head.appendChild(style);
+    }
+
+    // Instant Synchronous Passcode Unlock Function
+    function handlePasscodeUnlock(e) {
+      if (e) {
+        e.preventDefault();
+        e.stopPropagation();
+      }
+      const input = document.getElementById('passcode-input');
+      const err = document.getElementById('passcode-error');
+      const overlay = document.getElementById('admin-passcode-overlay');
+      const workspace = document.getElementById('admin-workspace');
+
+      const val = (input ? input.value : '').trim().toLowerCase();
+      if (val === 'wedding2026' || val === 'wedding' || val === '2026') {
+        sessionStorage.setItem('admin_unlocked', 'true');
+        if (overlay) overlay.style.display = 'none';
+        if (workspace) workspace.style.display = 'block';
+        if (typeof window.loadLivePeople === 'function') {
+          window.loadLivePeople();
+        }
+      } else {
+        if (err) err.innerText = 'Incorrect passcode. Try "wedding2026"';
+      }
+      return false;
+    }
+  </script>
+</head>
+
+<body class="admin-page-body">
+
+  <!-- Floating Heart click layer canvas -->
+  <canvas id="click-hearts-canvas" aria-hidden="true"></canvas>
+
+  <!-- Passcode Unlock Lock Screen Modal -->
+  <div id="admin-passcode-overlay" class="admin-passcode-overlay">
+    <div class="admin-lock-card">
+      <div class="lock-icon">🔒</div>
+      <h2 class="heading-serif">Admin Portal</h2>
+      <p class="lock-subtitle">Enter passcode to access favorite people management.</p>
+      <form id="passcode-form" class="lock-form" onsubmit="return handlePasscodeUnlock(event);">
+        <input type="password" id="passcode-input" placeholder="Enter Passcode" class="admin-input" required autofocus>
+        <div id="passcode-error" class="admin-error-text"></div>
+        <button type="button" id="unlock-btn" class="admin-submit-btn" onclick="handlePasscodeUnlock(event)">Unlock Management</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- Main Admin Workspace -->
+  <div id="admin-workspace" class="admin-workspace" style="display: none;">
+    <!-- Navigation Header -->
+    <header class="admin-header">
+      <div class="admin-header-content">
+        <div class="admin-brand">
+          <span class="admin-badge">Firestore & Storage Admin</span>
+          <h1 class="heading-serif">Favorite People Management</h1>
+        </div>
+        <div class="admin-actions">
+          <a href="index.html" class="admin-nav-link">← Return to Website</a>
+          <button id="lock-admin-btn" class="admin-lock-btn" onclick="sessionStorage.removeItem('admin_unlocked'); location.reload();">🔒 Lock</button>
+        </div>
+      </div>
+    </header>
+
+    <main class="admin-main-container">
+      
+      <!-- Notification Banner -->
+      <div id="admin-alert-banner" class="admin-alert-banner" style="display: none;"></div>
+
+      <!-- Grid: Add Person Form & Live List -->
+      <div class="admin-grid-layout">
+
+        <!-- Column 1: Add Person Form (With Phone/PC Direct File Upload) -->
+        <div class="admin-card-panel">
+          <h2 class="heading-serif panel-title">Add New Person</h2>
+          <p class="panel-subtitle">Upload photos directly from phone/PC to Firebase Storage & Firestore.</p>
+
+          <form id="add-person-form" class="admin-form-group">
+            <div class="form-field">
+              <label for="person-name">Full / Display Name *</label>
+              <input type="text" id="person-name" placeholder="e.g. Parents, Iman, Ishwor" class="admin-input" required>
+            </div>
+
+            <div class="form-field">
+              <label for="person-role">Role / Title *</label>
+              <input type="text" id="person-role" placeholder="e.g. Bridesmaid, Best Friend, Cousin" class="admin-input" required>
+            </div>
+
+            <div class="form-row-2col">
+              <div class="form-field">
+                <label for="person-side">Side / Belonging *</label>
+                <select id="person-side" class="admin-select" required>
+                  <option value="bride">Bride's Side (Ayaka)</option>
+                  <option value="groom">Groom's Side (Ashis)</option>
+                  <option value="shared">Shared Circle</option>
+                </select>
+              </div>
+
+              <div class="form-field">
+                <label for="person-category">Category *</label>
+                <select id="person-category" class="admin-select" required>
+                  <option value="friends">Friends</option>
+                  <option value="family">Family</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="form-field">
+              <label for="person-relationship">Relationship Label</label>
+              <input type="text" id="person-relationship" placeholder="e.g. Ayaka's Family, Groom's Friend" class="admin-input">
+            </div>
+
+            <!-- Upload 1: 5 cm Profile Picture (PP Avatar) -->
+            <div class="form-field file-upload-box">
+              <label for="avatar-file-input">📷 5 cm Profile Picture (Choose from phone/PC)</label>
+              <input type="file" id="avatar-file-input" accept="image/*" class="admin-file-input">
+              <span class="file-help-text">Used for the 5 cm circular avatar frame.</span>
+            </div>
+
+            <!-- Upload 2+: Keepsake Photos (Slidable Carousel inside Modal) -->
+            <div class="form-field file-upload-box">
+              <label for="photos-files-input">🖼️ Slidable Keepsake Photos (Choose 1, 2, or more)</label>
+              <input type="file" id="photos-files-input" accept="image/*" multiple class="admin-file-input">
+              <span class="file-help-text">Select multiple photos from phone/PC for the slidable carousel in modal.</span>
+            </div>
+
+            <!-- Fallback URL option if not uploading files -->
+            <div class="form-field">
+              <label for="person-photo-select">Or Select Preset Photo</label>
+              <select id="person-photo-select" class="admin-select">
+                <option value="">-- Choose file above or pick preset --</option>
+                <option value="assets2/Sakura2shot.jpg">Sakura Season (assets2/Sakura2shot.jpg)</option>
+                <option value="assets2/Kyoto2shot.jpg">Kyoto Stroll (assets2/Kyoto2shot.jpg)</option>
+                <option value="assets2/autumleaves.jpg">Autumn Leaves (assets2/autumleaves.jpg)</option>
+                <option value="assets2/first date.jpg">First Date (assets2/first date.jpg)</option>
+                <option value="assets2/Disney2shot.jpg">Disney Day (assets2/Disney2shot.jpg)</option>
+                <option value="assets2/EBC2shot.JPG">EBC Hike (assets2/EBC2shot.JPG)</option>
+                <option value="assets2/okinawa.JPG">Okinawa (assets2/okinawa.JPG)</option>
+                <option value="assets2/nagano.jpg">Nagano (assets2/nagano.jpg)</option>
+                <option value="assets2/pair-ring.jpg">Couple Ring (assets2/pair-ring.jpg)</option>
+                <option value="assets2/nepal2.jpg">Nepal Trek (assets2/nepal2.jpg)</option>
+              </select>
+            </div>
+
+            <div class="form-field">
+              <label for="person-note">Memory / Personalized Note</label>
+              <textarea id="person-note" placeholder="Write a short memory or message about this friend/family member..." class="admin-textarea"></textarea>
+            </div>
+
+            <div id="upload-status-bar" class="upload-status-bar" style="display: none;"></div>
+
+            <button type="submit" id="save-person-btn" class="admin-primary-btn">
+              + Save Person to Firebase
+            </button>
+          </form>
+        </div>
+
+        <!-- Column 2: Live Firestore List -->
+        <div class="admin-card-panel">
+          <div class="panel-header-actions">
+            <div>
+              <h2 class="heading-serif panel-title">Current People List</h2>
+              <p class="panel-subtitle">Live sync from Firebase Firestore.</p>
+            </div>
+            <button id="refresh-list-btn" class="admin-secondary-btn">↻ Refresh</button>
+          </div>
+
+          <div id="admin-people-list-container" class="admin-people-list-container">
+            <div class="admin-loading-state">Loading people from Firebase...</div>
+          </div>
+        </div>
+
+      </div>
+    </main>
+  </div>
+
+  <!-- Firebase Module & Admin Data Sync Script -->
+  <script type="module">
+    import { 
+      uploadImageToFirebaseStorage, 
+      savePersonToFirestore, 
+      fetchFavoritePeopleFromFirestore, 
+      deletePersonFromFirestore, 
+      seedInitialFirestoreIfNeeded 
+    } from './firebase-config.js';
+
+    // Explicitly attach to window
+    window.uploadImageToFirebaseStorage = uploadImageToFirebaseStorage;
+    window.savePersonToFirestore = savePersonToFirestore;
+    window.fetchFavoritePeopleFromFirestore = fetchFavoritePeopleFromFirestore;
+    window.deletePersonFromFirestore = deletePersonFromFirestore;
+    window.seedInitialFirestoreIfNeeded = seedInitialFirestoreIfNeeded;
+
+    const addForm = document.getElementById('add-person-form');
+    const alertBanner = document.getElementById('admin-alert-banner');
+    const uploadStatusBar = document.getElementById('upload-status-bar');
+    const refreshBtn = document.getElementById('refresh-list-btn');
+    const listContainer = document.getElementById('admin-people-list-container');
+
+    // Show Banner
+    function showAlert(msg, isError = false) {
+      alertBanner.innerText = msg;
+      alertBanner.className = `admin-alert-banner ${isError ? 'error' : 'success'}`;
+      alertBanner.style.display = 'block';
+      setTimeout(() => {
+        alertBanner.style.display = 'none';
+      }, 4000);
+    }
+
+    // Load People from Firebase Firestore
+    async function loadLivePeople() {
+      if (!listContainer) return;
+      listContainer.innerHTML = `<div class="admin-loading-state">Syncing with Firebase Firestore...</div>`;
+      
+      let people = null;
+      try {
+        people = await fetchFavoritePeopleFromFirestore();
+      } catch (err) {
+        console.error("Failed to fetch from Firestore:", err);
+      }
+
+      // Seed default if empty
+      if (!people || people.length === 0) {
+        try {
+          people = await seedInitialFirestoreIfNeeded();
+        } catch (err) {
+          console.error("Failed to seed Firestore:", err);
+        }
+      }
+
+      if (!people || people.length === 0) {
+        listContainer.innerHTML = `<div class="admin-empty-state">No people found. Add your first person using the form on the left!</div>`;
+        return;
+      }
+
+      renderPeopleList(people);
+    }
+
+    window.loadLivePeople = loadLivePeople;
+
+    // If already unlocked, load live people now
+    if (sessionStorage.getItem('admin_unlocked') === 'true') {
+      loadLivePeople();
+    }
+
+    function renderPeopleList(people) {
+      listContainer.innerHTML = "";
+
+      const sideLabels = { bride: "Bride's Side (Ayaka)", groom: "Groom's Side (Ashis)", shared: "Shared Circle" };
+      const sideBadges = { bride: "bride-badge", groom: "groom-badge", shared: "shared-badge" };
+
+      people.forEach((person) => {
+        const itemCard = document.createElement('div');
+        itemCard.className = 'admin-person-card';
+
+        const avatarUrl = person.avatarImg || (person.photos && person.photos[0]) || 'assets2/Sakura2shot.jpg';
+        const photoCount = Array.isArray(person.photos) ? person.photos.length : 1;
+
+        itemCard.innerHTML = `
+          <div class="admin-person-photo-preview">
+            <img src="${avatarUrl}" alt="${person.name}" onerror="this.src='assets2/Sakura2shot.jpg'">
+          </div>
+
+          <div class="admin-person-details">
+            <div class="admin-person-meta">
+              <span class="admin-tag ${sideBadges[person.side] || ''}">${sideLabels[person.side] || person.side}</span>
+              <span class="admin-tag category-badge">${person.category || 'friend'}</span>
+              <span class="admin-tag count-badge">📸 ${photoCount} photos</span>
+            </div>
+            <h3 class="admin-person-name">${person.name}</h3>
+            <p class="admin-person-role">${person.role}</p>
+            ${person.note ? `<p class="admin-person-note">"${person.note}"</p>` : ''}
+          </div>
+
+          <div class="admin-person-actions">
+            <button type="button" class="admin-delete-btn" data-doc-id="${person.docId}">
+              🗑️ Delete
+            </button>
+          </div>
+        `;
+
+        const deleteBtn = itemCard.querySelector('.admin-delete-btn');
+        deleteBtn.addEventListener('click', async () => {
+          const docIdToDelete = person.docId || person.key;
+          if (confirm(`Are you sure you want to delete "${person.name}" from Firestore?`)) {
+            deleteBtn.innerText = "Deleting...";
+            deleteBtn.disabled = true;
+            
+            const res = await deletePersonFromFirestore(docIdToDelete);
+            if (res && res.success) {
+              showAlert(`Successfully deleted "${person.name}"`);
+              loadLivePeople();
+            } else {
+              showAlert(`Failed to delete person`, true);
+              deleteBtn.innerText = "🗑️ Delete";
+              deleteBtn.disabled = false;
+            }
+          }
+        });
+
+        listContainer.appendChild(itemCard);
+      });
+    }
+
+    if (refreshBtn) refreshBtn.addEventListener('click', loadLivePeople);
+
+    // Handle Form Submission with Direct Storage Uploads
+    if (addForm) {
+      addForm.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        const submitBtn = document.getElementById('save-person-btn');
+        
+        const name = document.getElementById('person-name').value.trim();
+        const role = document.getElementById('person-role').value.trim();
+        const side = document.getElementById('person-side').value;
+        const category = document.getElementById('person-category').value;
+        const relationship = document.getElementById('person-relationship').value.trim() || `${side === 'bride' ? "Ayaka's" : side === 'groom' ? "Ashis's" : "Shared"} ${category}`;
+        const note = document.getElementById('person-note').value.trim();
+
+        const avatarFileInput = document.getElementById('avatar-file-input');
+        const photosFilesInput = document.getElementById('photos-files-input');
+        const presetPhotoSelect = document.getElementById('person-photo-select');
+
+        if (!name || !role) return;
+
+        submitBtn.disabled = true;
+        submitBtn.innerText = "Uploading & Saving...";
+        uploadStatusBar.style.display = 'block';
+        uploadStatusBar.innerText = "Preparing uploads...";
+
+        let avatarUrl = "";
+        let photosUrls = [];
+
+        try {
+          // 1. Upload 5 cm Profile Picture (if selected)
+          if (avatarFileInput.files && avatarFileInput.files[0]) {
+            uploadStatusBar.innerText = "Uploading 5 cm Profile Picture to Firebase Storage...";
+            avatarUrl = await uploadImageToFirebaseStorage(avatarFileInput.files[0], "avatars");
+          }
+
+          // 2. Upload Slidable Keepsake Photos (if selected)
+          if (photosFilesInput.files && photosFilesInput.files.length > 0) {
+            const files = Array.from(photosFilesInput.files);
+            for (let i = 0; i < files.length; i++) {
+              uploadStatusBar.innerText = `Uploading keepsake photo ${i + 1} of ${files.length} to Firebase Storage...`;
+              const url = await uploadImageToFirebaseStorage(files[i], "keepsakes");
+              photosUrls.push(url);
+            }
+          }
+
+          // If no custom photo uploaded, check preset or default
+          if (photosUrls.length === 0) {
+            const presetVal = presetPhotoSelect.value;
+            if (presetVal) {
+              photosUrls.push(presetVal);
+            } else {
+              photosUrls.push("assets2/Sakura2shot.jpg");
+            }
+          }
+
+          if (!avatarUrl) {
+            avatarUrl = photosUrls[0];
+          }
+
+          uploadStatusBar.innerText = "Saving record to Firebase Firestore...";
+
+          const newPerson = {
+            name,
+            role,
+            side,
+            category,
+            relationship,
+            avatarImg: avatarUrl,
+            togetherImg: photosUrls[0],
+            photos: photosUrls,
+            note
+          };
+
+          const res = await savePersonToFirestore(newPerson);
+
+          if (res && res.success) {
+            showAlert(`Successfully added "${name}" to Firebase Firestore & Storage!`);
+            addForm.reset();
+            uploadStatusBar.style.display = 'none';
+            loadLivePeople();
+          } else {
+            showAlert(`Failed to save record to Firestore`, true);
+          }
+        } catch (err) {
+          console.error("Upload error:", err);
+          showAlert(`Error uploading files: ${err.message}`, true);
+        } finally {
+          submitBtn.disabled = false;
+          submitBtn.innerText = "+ Save Person to Firebase";
+          uploadStatusBar.style.display = 'none';
+        }
+      });
+    }
+  </script>
+
+</body>
+
+</html>

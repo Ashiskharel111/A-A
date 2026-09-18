@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="description" content="Meet the favorite people, family, and friends celebrating Ashis & Ayaka.">
+  <meta property="og:title" content="Our Favorite People | Ashis & Ayaka Wedding">
+  <meta property="og:description" content="Meet the favorite people, family, and friends celebrating Ashis & Ayaka.">
+  <link rel="icon" href="assets/icon.svg" type="image/svg+xml" sizes="any">
+  <title>Our Favorite People - Ashis & Ayaka | Wedding Website</title>
+
+  <!-- Main Stylesheet -->
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body class="party-page-body">
+
+  <!-- Floating Heart click layer canvas -->
+  <canvas id="click-hearts-canvas" aria-hidden="true"></canvas>
+
+  <!-- Navigation Bar -->
+  <nav class="sticky-nav">
+    <div class="nav-container">
+      <a href="index.html" class="nav-logo">A&A</a>
+      <div class="nav-actions">
+        <a href="index.html" class="nav-back-link">← Home</a>
+      </div>
+    </div>
+  </nav>
+
+  <main class="party-page-main">
+    <!-- Hero Editorial Section -->
+    <header class="party-header-section">
+      <span class="party-hero-badge">✨ Celebrating Our Beloved Circle</span>
+      <h1 class="heading-serif party-title">meet our favorite people</h1>
+      <p class="party-subtitle">The family who raised us, the friends who walk beside us, and the shared souls who make our journey complete.</p>
+    </header>
+
+    <!-- Three Columns Editorial Layout -->
+    <section class="party-columns-container">
+
+      <!-- COLUMN 1: BRIDE'S SIDE (AYAKA) -->
+      <div class="party-column bride-side">
+        <div class="column-header">
+          <span class="column-tag bride-tag">Bride's Side</span>
+          <h2 class="heading-serif">Ayaka's Circle</h2>
+        </div>
+
+        <!-- Family Sub-Section -->
+        <div class="party-group-section">
+          <h3 class="group-title font-serif">Family</h3>
+          <div class="bubbles-grid" id="bride-family-grid">
+            <!-- Populated dynamically by JS -->
+          </div>
+        </div>
+
+        <div class="column-section-divider"></div>
+
+        <!-- Friends Sub-Section -->
+        <div class="party-group-section">
+          <h3 class="group-title font-serif">Friends</h3>
+          <div class="bubbles-grid" id="bride-friends-grid">
+            <!-- Populated dynamically by JS -->
+          </div>
+        </div>
+      </div>
+
+      <!-- COLUMN 2: SHARED / OVERLAPPING FRIENDS (MIDDLE CENTERPIECE) -->
+      <div class="party-column shared-side">
+        <div class="column-header">
+          <span class="column-tag shared-tag">Overlapping Friends</span>
+          <h2 class="heading-serif">Our Shared Circle</h2>
+        </div>
+
+        <div class="party-group-section">
+          <h3 class="group-title font-serif">Shared Friends & Travel Buddies</h3>
+          <div class="bubbles-grid" id="shared-bubbles-grid">
+            <!-- Populated dynamically by JS -->
+          </div>
+        </div>
+      </div>
+
+      <!-- COLUMN 3: GROOM'S SIDE (ASHIS) -->
+      <div class="party-column groom-side">
+        <div class="column-header">
+          <span class="column-tag groom-tag">Groom's Side</span>
+          <h2 class="heading-serif">Ashis's Circle</h2>
+        </div>
+
+        <!-- Family Sub-Section -->
+        <div class="party-group-section">
+          <h3 class="group-title font-serif">Family</h3>
+          <div class="bubbles-grid" id="groom-family-grid">
+            <!-- Populated dynamically by JS -->
+          </div>
+        </div>
+
+        <div class="column-section-divider"></div>
+
+        <!-- Friends Sub-Section -->
+        <div class="party-group-section">
+          <h3 class="group-title font-serif">Friends</h3>
+          <div class="bubbles-grid" id="groom-friends-grid">
+            <!-- Populated dynamically by JS -->
+          </div>
+        </div>
+      </div>
+
+    </section>
+  </main>
+
+  <!-- Keepsake Person Detail Modal Popup -->
+  <div id="person-modal-overlay" class="person-modal-overlay" aria-hidden="true">
+    <div class="person-modal-card" role="dialog" aria-modal="true" aria-labelledby="modal-person-name">
+      <button class="person-modal-close" aria-label="Close modal">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M18 6L6 18M6 6l12 12"></path>
+        </svg>
+      </button>
+
+      <div class="person-modal-body">
+        <div class="modal-photo-wrapper">
+          <img id="modal-together-photo" src="" alt="Together Photo" class="modal-together-img">
+          <span id="modal-relationship-badge" class="modal-relationship-badge">Friend</span>
+        </div>
+
+        <div class="modal-info-content">
+          <h3 id="modal-person-name" class="heading-serif modal-person-name">Name</h3>
+          <p id="modal-person-role" class="modal-person-role">Role</p>
+          <div class="modal-divider"></div>
+          <p id="modal-person-note" class="modal-person-note">Note about friendship and memories.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="site-footer">
+    <div class="footer-overlay" style="position: relative; background: transparent; padding: 40px 20px;">
+      <span class="footer-credit">Created with Love for Ashis & Ayaka</span>
+    </div>
+  </footer>
+
+  <!-- Firebase SDK & Config -->
+  <script type="module" src="firebase-config.js"></script>
+  <!-- Master JavaScript File -->
+  <script src="app.js"></script>
+</body>
+
+</html>
