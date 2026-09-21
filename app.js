@@ -552,9 +552,21 @@ function initDetailsDrawer() {
         <span class="drawer-person-role">${person.role}</span>
       `;
 
+      let drawerBubbleTapCount = 0;
+      let drawerBubbleTapTimer = null;
+
       item.addEventListener('click', (e) => {
         e.stopPropagation();
-        openPersonModal(person);
+        drawerBubbleTapCount++;
+        clearTimeout(drawerBubbleTapTimer);
+        drawerBubbleTapTimer = setTimeout(() => { drawerBubbleTapCount = 0; }, 700);
+
+        if (drawerBubbleTapCount >= 3 && person.hiddenImg) {
+          drawerBubbleTapCount = 0;
+          openPersonModal(person, true);
+        } else {
+          openPersonModal(person, false);
+        }
       });
 
       container.appendChild(item);
@@ -715,86 +727,99 @@ function initClickHearts() {
 /* =========================================
    8. Favorite People Data & Modal Popup Logic
    ========================================= */
+/* =========================================
+   8. Favorite People Data & Modal Popup Logic
+   ========================================= */
 const favoritePeopleData = {
   brideFamily: [
     {
       name: "Akiko Watanabe",
       role: "Mother of the Bride",
       relationship: "Ayaka's Family",
-      avatarImg: "",
-      togetherImg: "assets2/Kyoto2shot.jpg",
+      avatarImg: "assets/wedding piccs/akochan.png",
+      togetherImg: "assets/wedding piccs/akochan.png",
+      photos: ["assets/wedding piccs/akochan.png", "assets2/Kyoto2shot.jpg"],
       note: "Ayaka's loving mother, the heart and warmth of the Watanabe family home."
     },
     {
       name: "Mr Watanabe",
       role: "Father of the Bride",
       relationship: "Ayaka's Family",
-      avatarImg: "",
-      togetherImg: "assets2/Sakura2shot.jpg",
+      avatarImg: "assets/wedding piccs/kunihisa.png",
+      togetherImg: "assets/wedding piccs/kunihisa.png",
+      photos: ["assets/wedding piccs/kunihisa.png", "assets2/Sakura2shot.jpg"],
       note: "Ayaka's supportive and proud father, guiding with boundless love and wisdom."
     },
     {
       name: "Ryoma Watanabe",
       role: "Brother",
       relationship: "Ayaka's Family",
-      avatarImg: "",
-      togetherImg: "assets2/Sakura2shot.jpg",
+      avatarImg: "assets/wedding piccs/ryoma.png",
+      togetherImg: "assets/wedding piccs/ryoma.png",
+      photos: ["assets/wedding piccs/ryoma.png", "assets2/Sakura2shot.jpg"],
       note: "Ayaka's brother, lifelong companion and trusted confidant."
     },
     {
       name: "Tamaki Watanabe",
       role: "Sister in Law",
       relationship: "Ayaka's Family",
-      avatarImg: "",
-      togetherImg: "assets2/Sakura2shot2.jpg",
+      avatarImg: "assets/wedding piccs/tamaki.png",
+      togetherImg: "assets/wedding piccs/tamaki.png",
+      photos: ["assets/wedding piccs/tamaki.png", "assets2/Sakura2shot2.jpg"],
       note: "Brings endless warmth, happiness, and sisterly bond to our family."
     },
     {
       name: "Shio Watanabe",
       role: "Nephew",
       relationship: "Ayaka's Family",
-      avatarImg: "",
-      togetherImg: "assets2/autumleaves.jpg",
+      avatarImg: "assets/wedding piccs/shio.png",
+      togetherImg: "assets/wedding piccs/shio.png",
+      photos: ["assets/wedding piccs/shio.png", "assets/wedding piccs/so.png"],
       note: "Beloved nephew bringing endless smiles and playful energy to every family reunion."
     },
     {
       name: "Sou Watanabe",
       role: "Nephew",
       relationship: "Ayaka's Family",
-      avatarImg: "",
-      togetherImg: "assets2/autumleaves.jpg",
+      avatarImg: "assets/wedding piccs/so.png",
+      togetherImg: "assets/wedding piccs/so.png",
+      photos: ["assets/wedding piccs/so.png", "assets/wedding piccs/shio.png"],
       note: "Beloved nephew whose bright laughter and sweetness light up our home."
     },
     {
       name: "Mimi",
       role: "Family Cat",
       relationship: "Ayaka's Family • Pet",
-      avatarImg: "",
-      togetherImg: "assets2/heart-rock.jpg",
+      avatarImg: "assets/wedding piccs/mimi.png",
+      togetherImg: "assets/wedding piccs/mimi.png",
+      photos: ["assets/wedding piccs/mimi.png", "assets/wedding piccs/Lala.png"],
       note: "The adorable feline queen of the household, master of cozy naps."
     },
     {
       name: "Lala",
       role: "Family Cat",
       relationship: "Ayaka's Family • Pet",
-      avatarImg: "",
-      togetherImg: "assets2/heart-rock.jpg",
+      avatarImg: "assets/wedding piccs/Lala.png",
+      togetherImg: "assets/wedding piccs/Lala.png",
+      photos: ["assets/wedding piccs/Lala.png", "assets/wedding piccs/mimi.png"],
       note: "Sweet and curious family cat who brings purrs and warmth everywhere."
     },
     {
       name: "Merun",
       role: "Family Dog",
       relationship: "Ayaka's Family • Pet",
-      avatarImg: "",
-      togetherImg: "assets2/okinawa.JPG",
+      avatarImg: "assets/wedding piccs/merun(right).png",
+      togetherImg: "assets/wedding piccs/merun(right).png",
+      photos: ["assets/wedding piccs/merun(right).png", "assets/wedding piccs/peron(left).png"],
       note: "Loyal and energetic family pup, always ready for tail-wagging adventures."
     },
     {
       name: "Perun",
       role: "Family Dog",
       relationship: "Ayaka's Family • Pet",
-      avatarImg: "",
-      togetherImg: "assets2/okinawa.JPG",
+      avatarImg: "assets/wedding piccs/peron(left).png",
+      togetherImg: "assets/wedding piccs/peron(left).png",
+      photos: ["assets/wedding piccs/peron(left).png", "assets/wedding piccs/merun(right).png"],
       note: "Playful and cuddly furry companion bringing pure joy to our days."
     }
   ],
@@ -803,40 +828,45 @@ const favoritePeopleData = {
       name: "Makisi Ayaka",
       role: "Close Friend",
       relationship: "Bride's Friend",
-      avatarImg: "",
-      togetherImg: "assets2/Sakura2shot.jpg",
+      avatarImg: "assets/wedding piccs/makishimom.png",
+      togetherImg: "assets/wedding piccs/makishimom.png",
+      photos: ["assets/wedding piccs/makishimom.png", "assets2/Sakura2shot.jpg"],
       note: "Cherished friend who brings wonderful memories, laughter, and support."
     },
     {
       name: "RIKO",
       role: "Close Friend",
       relationship: "Bride's Friend",
-      avatarImg: "",
-      togetherImg: "assets2/Kyoto2shot.jpg",
+      avatarImg: "assets/wedding piccs/riko.png",
+      togetherImg: "assets/wedding piccs/riko.png",
+      photos: ["assets/wedding piccs/riko.png", "assets2/Kyoto2shot.jpg"],
       note: "Dear friend who has shared so many unforgettable moments and milestones."
     },
     {
       name: "Sakiho",
       role: "Close Friend",
       relationship: "Bride's Friend",
-      avatarImg: "",
-      togetherImg: "assets2/autumleaves.jpg",
+      avatarImg: "assets/wedding piccs/sakiho(left).png",
+      togetherImg: "assets/wedding piccs/sakiho(left).png",
+      photos: ["assets/wedding piccs/sakiho(left).png", "assets/wedding piccs/chiaki(right).png"],
       note: "Always bringing smiles, deep conversations, and uplifting positive energy."
     },
     {
       name: "Chiaki",
       role: "Close Friend",
       relationship: "Bride's Friend",
-      avatarImg: "",
-      togetherImg: "assets2/Ueno2shot.jpg",
+      avatarImg: "assets/wedding piccs/chiaki(right).png",
+      togetherImg: "assets/wedding piccs/chiaki(right).png",
+      photos: ["assets/wedding piccs/chiaki(right).png", "assets/wedding piccs/sakiho(left).png"],
       note: "Trusted friend and confidante for life talks and fun celebrations."
     },
     {
       name: "Andrea",
       role: "Close Friend",
       relationship: "Bride's Friend",
-      avatarImg: "",
-      togetherImg: "assets2/Disney2shot.jpg",
+      avatarImg: "assets/wedding piccs/andrea.png",
+      togetherImg: "assets/wedding piccs/andrea.png",
+      photos: ["assets/wedding piccs/andrea.png", "assets2/Disney2shot.jpg"],
       note: "Wonderful friend sharing unforgettable adventures and warm companionship."
     }
   ],
@@ -845,56 +875,63 @@ const favoritePeopleData = {
       name: "Ishwor",
       role: "Mutual Friend",
       relationship: "Our Shared Circle",
-      avatarImg: "",
-      togetherImg: "assets2/nepal2.jpg",
+      avatarImg: "assets/wedding piccs/ish.png",
+      togetherImg: "assets/wedding piccs/ish.png",
+      photos: ["assets/wedding piccs/ish.png", "assets2/nepal2.jpg"],
       note: "Trusted mutual friend who brings great camaraderie and joy to both of us."
     },
     {
       name: "Nabin",
       role: "Mutual Friend",
       relationship: "Our Shared Circle",
-      avatarImg: "",
-      togetherImg: "assets2/Okutama2shot.JPG",
+      avatarImg: "assets/wedding piccs/nabin.png.jpg",
+      togetherImg: "assets/wedding piccs/20190330_193606.jpg",
+      photos: ["assets/wedding piccs/nabin.png.jpg", "assets/wedding piccs/20190330_193606.jpg"],
       note: "Always bringing laughter, high energy, and genuine warmth to every meetup."
     },
     {
       name: "Sandip",
       role: "Mutual Friend",
       relationship: "Our Shared Circle",
-      avatarImg: "",
-      togetherImg: "assets2/EBC-90mins.jpg",
+      avatarImg: "assets/wedding piccs/20190530_132857.jpg",
+      togetherImg: "assets/wedding piccs/20190530_132857.jpg",
+      photos: ["assets/wedding piccs/20190530_132857.jpg", "assets2/EBC-90mins.jpg"],
       note: "Great friend and adventure buddy through mountain trails and celebrations."
     },
     {
       name: "Kristian",
       role: "Mutual Friend",
       relationship: "Our Shared Circle",
-      avatarImg: "",
-      togetherImg: "assets2/Kamakura2shot.jpg",
+      avatarImg: "assets/wedding piccs/kristian.png",
+      togetherImg: "assets/wedding piccs/kristian.png",
+      photos: ["assets/wedding piccs/kristian.png", "assets2/Kamakura2shot.jpg"],
       note: "Wonderful friend sharing great conversations and memorable gatherings."
     },
     {
       name: "Rumon",
       role: "Mutual Friend",
       relationship: "Our Shared Circle",
-      avatarImg: "",
-      togetherImg: "assets2/Disney2shot.jpg",
+      avatarImg: "assets/wedding piccs/20180725_183918.jpg",
+      togetherImg: "assets/wedding piccs/20180725_183918.jpg",
+      photos: ["assets/wedding piccs/20180725_183918.jpg", "assets2/Disney2shot.jpg"],
       note: "Reliable friend and the life of every reunion and get-together."
     },
     {
       name: "Iman",
       role: "Mutual Friend",
       relationship: "Our Shared Circle",
-      avatarImg: "",
-      togetherImg: "assets2/Sakura2shot.jpg",
+      avatarImg: "assets/wedding piccs/iman.png",
+      togetherImg: "assets/wedding piccs/iman.png",
+      photos: ["assets/wedding piccs/iman.png", "assets/wedding piccs/elvina.png"],
       note: "Cherished mutual friend whose presence makes every occasion special."
     },
     {
       name: "Iman's friend",
       role: "Mutual Friend",
       relationship: "Our Shared Circle",
-      avatarImg: "",
-      togetherImg: "assets2/Kyoto2shot.jpg",
+      avatarImg: "assets/wedding piccs/elvina.png",
+      togetherImg: "assets/wedding piccs/elvina.png",
+      photos: ["assets/wedding piccs/elvina.png", "assets/wedding piccs/nanaha.png"],
       note: "Warm friend welcomed with open arms into our celebration."
     }
   ],
@@ -903,64 +940,73 @@ const favoritePeopleData = {
       name: "Mina Kharel",
       role: "Mother of the Groom",
       relationship: "Ashis's Family",
-      avatarImg: "",
-      togetherImg: "assets2/nagano.jpg",
+      avatarImg: "assets/wedding piccs/parents.jpg",
+      togetherImg: "assets/wedding piccs/parents.jpg",
+      photos: ["assets/wedding piccs/parents.jpg", "assets2/nagano.jpg"],
       note: "Ashis's loving mother, a pillar of care, warmth, and unconditional devotion."
     },
     {
       name: "Prajapati Kharel",
       role: "Father of the Groom",
       relationship: "Ashis's Family",
-      avatarImg: "",
-      togetherImg: "assets2/nepal2.jpg",
+      avatarImg: "assets/wedding piccs/prajapatikharel.png.jpg",
+      togetherImg: "assets/wedding piccs/prajapatikharel.JPG",
+      photos: ["assets/wedding piccs/prajapatikharel.JPG", "assets/wedding piccs/prajapatikharel.png.jpg", "assets/wedding piccs/parents.jpg"],
       note: "Ashis's guiding father, inspiring with wisdom, strength, and integrity."
     },
     {
       name: "Ayush Kharel",
       role: "Brother",
       relationship: "Ashis's Family",
-      avatarImg: "",
-      togetherImg: "assets2/nagano.jpg",
+      avatarImg: "assets/wedding piccs/ayush.png.jpg",
+      togetherImg: "assets/wedding piccs/ayush.png.jpg",
+      photos: ["assets/wedding piccs/ayush.png.jpg", "assets2/nagano.jpg"],
       note: "Inseparable brother and best friend through every chapter of life."
     },
     {
       name: "Grandparents",
       role: "Beloved Grandparents",
       relationship: "Ashis's Family",
-      avatarImg: "",
-      togetherImg: "assets2/nepal2.jpg",
+      avatarImg: "assets/wedding piccs/grandparents.jpg",
+      togetherImg: "assets/wedding piccs/grandparents.jpg",
+      photos: ["assets/wedding piccs/grandparents.jpg", "assets2/nepal2.jpg"],
       note: "Our cherished elders whose blessings and love guide our journey."
     },
     {
       name: "Shiva Kharel",
       role: "Uncle",
       relationship: "Ashis's Family",
-      avatarImg: "",
-      togetherImg: "assets2/nepal2.jpg",
+      avatarImg: "assets/wedding piccs/shivakharel.jpg",
+      togetherImg: "assets/wedding piccs/shivakharel.jpg",
+      photos: ["assets/wedding piccs/shivakharel.jpg", "assets2/nepal2.jpg"],
       note: "Respected uncle bringing wisdom, support, and family pride."
     },
     {
       name: "Kalpana Kharel",
       role: "Aunt",
       relationship: "Ashis's Family",
-      avatarImg: "",
-      togetherImg: "assets2/nagano.jpg",
+      avatarImg: "assets/wedding piccs/shivakharel.jpg",
+      togetherImg: "assets/wedding piccs/shivakharel.jpg",
+      photos: ["assets/wedding piccs/shivakharel.jpg", "assets2/nagano.jpg"],
       note: "Loving aunt whose warmth and care brighten every family gathering."
     },
     {
       name: "Prabesh Kharel",
       role: "Cousin",
       relationship: "Ashis's Family",
-      avatarImg: "",
-      togetherImg: "assets2/Okutama2shot.JPG",
+      avatarImg: "assets/wedding piccs/prabesh.cover.png.jpg",
+      togetherImg: "assets/wedding piccs/prabesh.png",
+      photos: ["assets/wedding piccs/prabesh.cover.png.jpg", "assets/wedding piccs/prabesh.png"],
+      hiddenImg: "assets/wedding piccs/prabesh.hidden.jpg",
       note: "Cousin and close buddy sharing laughter, brotherhood, and memories."
     },
     {
       name: "Prasansha Kharel",
       role: "Cousin",
       relationship: "Ashis's Family",
-      avatarImg: "",
-      togetherImg: "assets2/Okutama2shot.JPG",
+      avatarImg: "assets/wedding piccs/Prasansha.png.jpg",
+      togetherImg: "assets/wedding piccs/Prasansha.png.jpg",
+      photos: ["assets/wedding piccs/Prasansha.png.jpg", "assets2/Okutama2shot.JPG"],
       note: "Wonderful cousin who brings joy, smiles, and sweetness to the family circle."
     }
   ],
@@ -969,46 +1015,68 @@ const favoritePeopleData = {
       name: "Ryo",
       role: "Close Friend",
       relationship: "Groom's Friend",
-      avatarImg: "",
-      togetherImg: "assets2/nagano.jpg",
+      avatarImg: "assets/wedding piccs/Ryo.cover.jpg",
+      togetherImg: "assets/wedding piccs/ryo..jpg",
+      photos: ["assets/wedding piccs/Ryo.cover.jpg", "assets/wedding piccs/ryo..jpg"],
       note: "Great buddy for travel adventures, gatherings, and unforgettable times."
     },
     {
       name: "ChaCha",
       role: "Close Friend",
       relationship: "Groom's Friend",
-      avatarImg: "",
-      togetherImg: "assets2/Disney2shot.jpg",
+      avatarImg: "assets/wedding piccs/puktiramsapkotacover.jpeg",
+      togetherImg: "assets/wedding piccs/muktiramsapkota.jpg",
+      photos: ["assets/wedding piccs/puktiramsapkotacover.jpeg", "assets/wedding piccs/muktiramsapkota.jpg"],
       note: "Valued friend always bringing great energy and memorable moments."
     },
     {
       name: "Mama",
       role: "Close Friend",
       relationship: "Groom's Friend",
-      avatarImg: "",
-      togetherImg: "assets2/nepal2.jpg",
+      avatarImg: "assets/wedding piccs/puktiramsapkotacover.jpeg",
+      togetherImg: "assets/wedding piccs/muktiramsapkota.jpg",
+      photos: ["assets/wedding piccs/puktiramsapkotacover.jpeg", "assets/wedding piccs/muktiramsapkota.jpg"],
       note: "Cherished friend and constant source of support and good laughs."
     },
     {
       name: "Sandesh",
       role: "Childhood Friend",
       relationship: "Groom's Friend",
-      avatarImg: "",
-      togetherImg: "assets2/Okutama2shot.JPG",
+      avatarImg: "assets/wedding piccs/sandesh.png",
+      togetherImg: "assets/wedding piccs/sandesh.png",
+      photos: ["assets/wedding piccs/sandesh.png", "assets/wedding piccs/sandesh.heic.jpg"],
+      hiddenImg: "assets/wedding piccs/subhahidden.png",
       note: "Childhood friend through the years, sharing roots and lifelong brotherhood."
     },
     {
       name: "Aditya",
       role: "Childhood Friend",
       relationship: "Groom's Friend",
-      avatarImg: "",
-      togetherImg: "assets2/okinawa.JPG",
+      avatarImg: "assets/wedding piccs/Screenshot_20210129-134711_Facebook.jpg",
+      togetherImg: "assets/wedding piccs/Screenshot_20210129-134711_Facebook.jpg",
+      photos: ["assets/wedding piccs/Screenshot_20210129-134711_Facebook.jpg", "assets/wedding piccs/20180725_183918.jpg"],
       note: "Childhood friend who grew up together through all life's adventures."
     }
   ]
 };
 
-function openPersonModal(person) {
+// Floating secret toast notification helper
+function showSecretToast(msg = "✨ Secret Photo Unlocked! 🤫✨") {
+  let toast = document.getElementById('secret-toast-msg');
+  if (!toast) {
+    toast = document.createElement('div');
+    toast.id = 'secret-toast-msg';
+    toast.className = 'secret-toast-container';
+    document.body.appendChild(toast);
+  }
+  toast.innerHTML = `<span>🌟</span> <span>${msg}</span>`;
+  toast.classList.add('active');
+  setTimeout(() => {
+    toast.classList.remove('active');
+  }, 3200);
+}
+
+function openPersonModal(person, startWithHidden = false) {
   const overlay = document.getElementById('person-modal-overlay');
   const track = document.getElementById('modal-slider-track');
   const dotsContainer = document.getElementById('modal-slider-dots');
@@ -1022,36 +1090,87 @@ function openPersonModal(person) {
 
   if (!overlay) return;
 
-  // Gather all available photos for slidable carousel (at least 2 if available)
-  let photos = [];
+  // Resolve photos list
+  let basePhotos = [];
   if (Array.isArray(person.photos) && person.photos.length > 0) {
-    photos = person.photos;
+    basePhotos = [...person.photos];
   } else if (person.togetherImg) {
-    photos = [person.togetherImg];
+    basePhotos = [person.togetherImg];
+  } else if (person.avatarImg) {
+    basePhotos = [person.avatarImg];
   } else {
-    photos = ["assets2/Sakura2shot.jpg"];
+    basePhotos = ["assets2/Sakura2shot.jpg"];
   }
 
-  // Populate slider track
-  if (track) {
+  // Determine if this person has a hidden image
+  let hiddenImageSrc = person.hiddenImg || null;
+  if (!hiddenImageSrc && Array.isArray(person.photos)) {
+    const found = person.photos.find(p => typeof p === 'string' && p.toLowerCase().includes('hidden'));
+    if (found) hiddenImageSrc = found;
+  }
+
+  // Set initial photos state
+  let photos = [...basePhotos];
+  let isSecretRevealed = false;
+
+  if (startWithHidden && hiddenImageSrc) {
+    if (!photos.includes(hiddenImageSrc)) {
+      photos.unshift(hiddenImageSrc);
+    }
+    isSecretRevealed = true;
+  }
+
+  let currentIndex = 0;
+
+  function renderTrack() {
+    if (!track) return;
     track.innerHTML = "";
-    track.style.transform = "translateX(0%)";
+    track.style.transform = `translateX(-${currentIndex * 100}%)`;
+
     photos.forEach((src, idx) => {
       const slide = document.createElement('div');
       slide.className = 'slider-slide';
-      slide.innerHTML = `<img src="${src}" alt="${person.name} photo ${idx + 1}" class="modal-together-img" onerror="this.src='assets2/Sakura2shot.jpg'">`;
+      const isHiddenSlide = (hiddenImageSrc && src === hiddenImageSrc) || src.toLowerCase().includes('hidden');
+
+      slide.innerHTML = `
+        <div style="position:relative; width:100%; height:100%;">
+          ${isHiddenSlide ? `<span class="secret-unlocked-badge">🌟 Secret Memory 🤫✨</span>` : ''}
+          <img src="${src}" alt="${person.name} photo ${idx + 1}" class="modal-together-img" onerror="this.src='assets2/Sakura2shot.jpg'">
+        </div>
+      `;
+
+      // Triple Tap Handler on image
+      const img = slide.querySelector('img');
+      let tapCount = 0;
+      let tapTimer = null;
+
+      img.addEventListener('click', (e) => {
+        e.stopPropagation();
+        tapCount++;
+        clearTimeout(tapTimer);
+        tapTimer = setTimeout(() => { tapCount = 0; }, 700);
+
+        // Subtle tactile bounce on tap
+        img.style.transform = "scale(0.96)";
+        setTimeout(() => { img.style.transform = ""; }, 150);
+
+        if (tapCount >= 3) {
+          tapCount = 0;
+          unlockSecretPhoto();
+        }
+      });
+
       track.appendChild(slide);
     });
   }
 
-  // Populate dot indicators & arrow visibility
-  let currentIndex = 0;
-  if (dotsContainer) {
+  function renderDots() {
+    if (!dotsContainer) return;
     dotsContainer.innerHTML = "";
     if (photos.length > 1) {
       photos.forEach((_, idx) => {
         const dot = document.createElement('button');
-        dot.className = `slider-dot ${idx === 0 ? 'active' : ''}`;
+        dot.className = `slider-dot ${idx === currentIndex ? 'active' : ''}`;
         dot.setAttribute('aria-label', `Go to photo ${idx + 1}`);
         dot.addEventListener('click', (e) => {
           e.stopPropagation();
@@ -1080,6 +1199,28 @@ function openPersonModal(person) {
     }
   }
 
+  function unlockSecretPhoto() {
+    if (!hiddenImageSrc) {
+      // Gentle feedback if no secret image
+      showSecretToast(`✨ ${person.name}`);
+      return;
+    }
+
+    if (!photos.includes(hiddenImageSrc)) {
+      photos.unshift(hiddenImageSrc);
+      isSecretRevealed = true;
+      currentIndex = 0;
+      renderTrack();
+      renderDots();
+      goToSlide(0);
+      showSecretToast(`✨ Secret Photo Unlocked for ${person.name}! 🤫✨`);
+    } else {
+      const secretIdx = photos.indexOf(hiddenImageSrc);
+      goToSlide(secretIdx);
+      showSecretToast(`✨ Secret Photo Displayed! 🤫✨`);
+    }
+  }
+
   if (prevBtn) {
     prevBtn.onclick = (e) => {
       e.stopPropagation();
@@ -1094,10 +1235,18 @@ function openPersonModal(person) {
     };
   }
 
+  // Populate info
   if (modalBadge) modalBadge.innerText = person.relationship || 'Friend';
   if (modalName) modalName.innerText = person.name;
   if (modalRole) modalRole.innerText = person.role;
   if (modalNote) modalNote.innerText = person.note;
+
+  renderTrack();
+  renderDots();
+
+  if (startWithHidden && hiddenImageSrc) {
+    showSecretToast(`✨ Secret Photo Unlocked for ${person.name}! 🤫✨`);
+  }
 
   overlay.classList.add('active');
   overlay.setAttribute('aria-hidden', 'false');
@@ -1113,12 +1262,6 @@ function initPartyPage() {
 
   const overlay = document.getElementById('person-modal-overlay');
   const closeBtn = document.querySelector('.person-modal-close');
-
-  const modalImg = document.getElementById('modal-together-photo');
-  const modalBadge = document.getElementById('modal-relationship-badge');
-  const modalName = document.getElementById('modal-person-name');
-  const modalRole = document.getElementById('modal-person-role');
-  const modalNote = document.getElementById('modal-person-note');
 
   function getInitials(name) {
     return name
@@ -1149,30 +1292,32 @@ function initPartyPage() {
         <span class="bubble-person-role">${person.role}</span>
       `;
 
+      // Triple Tap Detection on Avatar Bubble
+      let bubbleTapCount = 0;
+      let bubbleTapTimer = null;
+
       item.addEventListener('click', () => {
-        openModal(person);
+        bubbleTapCount++;
+        clearTimeout(bubbleTapTimer);
+        bubbleTapTimer = setTimeout(() => { bubbleTapCount = 0; }, 700);
+
+        if (bubbleTapCount >= 3 && person.hiddenImg) {
+          bubbleTapCount = 0;
+          openPersonModal(person, true);
+        } else {
+          openPersonModal(person, false);
+        }
       });
 
       container.appendChild(item);
     });
   }
 
-  function openModal(person) {
-    modalImg.src = person.togetherImg;
-    modalImg.alt = `${person.name} together photo`;
-    modalBadge.innerText = person.relationship || 'Friend';
-    modalName.innerText = person.name;
-    modalRole.innerText = person.role;
-    modalNote.innerText = person.note;
-
-    overlay.classList.add('active');
-    overlay.setAttribute('aria-hidden', 'false');
-    document.body.style.overflow = 'hidden';
-  }
-
   function closeModal() {
-    overlay.classList.remove('active');
-    overlay.setAttribute('aria-hidden', 'true');
+    if (overlay) {
+      overlay.classList.remove('active');
+      overlay.setAttribute('aria-hidden', 'true');
+    }
     document.body.style.overflow = '';
   }
 

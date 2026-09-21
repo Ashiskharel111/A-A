@@ -120,8 +120,16 @@
       </button>
 
       <div class="person-modal-body">
-        <div class="modal-photo-wrapper">
-          <img id="modal-together-photo" src="" alt="Together Photo" class="modal-together-img">
+        <!-- Slidable Photos Container -->
+        <div class="modal-photo-slider">
+          <button id="slider-prev-btn" class="slider-arrow prev-arrow" aria-label="Previous photo">‹</button>
+          <div class="slider-track-viewport">
+            <div id="modal-slider-track" class="modal-slider-track">
+              <!-- Dynamically populated slides -->
+            </div>
+          </div>
+          <button id="slider-next-btn" class="slider-arrow next-arrow" aria-label="Next photo">›</button>
+          <div id="modal-slider-dots" class="modal-slider-dots"></div>
           <span id="modal-relationship-badge" class="modal-relationship-badge">Friend</span>
         </div>
 

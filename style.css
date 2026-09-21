@@ -2854,3 +2854,69 @@ footer.site-footer {
   font-weight: 400;
 }
 
+/* =========================================
+   17. Secret Easter-Egg Unlock UI (Triple-Tap Reveal)
+   ========================================= */
+.secret-unlocked-badge {
+  position: absolute;
+  top: 14px;
+  left: 14px;
+  z-index: 15;
+  background: linear-gradient(135deg, #f59e0b, #d97706);
+  color: #ffffff;
+  padding: 6px 14px;
+  border-radius: 99px;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  box-shadow: 0 4px 16px rgba(245, 158, 11, 0.45);
+  animation: secretBadgePulse 2s infinite ease-in-out;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+@keyframes secretBadgePulse {
+  0%, 100% { transform: scale(1); box-shadow: 0 4px 16px rgba(245, 158, 11, 0.45); }
+  50% { transform: scale(1.06); box-shadow: 0 6px 22px rgba(245, 158, 11, 0.7); }
+}
+
+.secret-toast-container {
+  position: fixed;
+  bottom: 32px;
+  left: 50%;
+  transform: translateX(-50%) translateY(40px);
+  z-index: 100000;
+  background: rgba(32, 22, 14, 0.95);
+  backdrop-filter: blur(12px);
+  color: #ffffff;
+  border: 1px solid rgba(245, 158, 11, 0.5);
+  padding: 12px 24px;
+  border-radius: 99px;
+  font-size: 14px;
+  font-weight: 600;
+  box-shadow: 0 12px 35px rgba(0, 0, 0, 0.4);
+  opacity: 0;
+  pointer-events: none;
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.4s ease;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.secret-toast-container.active {
+  transform: translateX(-50%) translateY(0);
+  opacity: 1;
+}
+
+.modal-together-img {
+  cursor: pointer;
+  user-select: none;
+  -webkit-user-select: none;
+  transition: transform 0.15s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.drawer-5cm-avatar img {
+  transition: transform 0.2s ease;
+}
+
