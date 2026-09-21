@@ -297,7 +297,7 @@ const drawerTemplates = {
     
     <div class="drawer-couple-centerpiece" id="drawer-couple-card-trigger">
       <div class="drawer-couple-avatar">
-        <img src="assets/guest piccs/bridegroom2shot.jpg" alt="Ashis & Ayaka">
+        <img src="assets/guest piccs/facecover/bridegroom2shot 1.51.14.jpg" alt="Ashis & Ayaka" onerror="this.src='assets/guest piccs/insidephoto/couple2shot cover.jpg'">
       </div>
       <div class="drawer-couple-info">
         <span class="drawer-section-kicker" style="color: var(--template-accent); margin-bottom: 2px;">The Bride &amp; Groom</span>
@@ -637,9 +637,9 @@ function initDetailsDrawer() {
                   name: "Ashis & Ayaka",
                   role: "The Bride & Groom",
                   relationship: "The Happy Couple",
-                  avatarImg: "assets/guest piccs/facecover/IMG_2267.heic.jpg",
-                  togetherImg: "assets/guest piccs/bridegroom2shot.jpg",
-                  photos: ["assets/guest piccs/bridegroom2shot.jpg"],
+                  avatarImg: "assets/guest piccs/facecover/bridegroom2shot 1.51.14.jpg",
+                  togetherImg: "assets/guest piccs/insidephoto/couple2shot cover.jpg",
+                  photos: ["assets/guest piccs/insidephoto/couple2shot cover.jpg"],
                   note: "Destiny had a plan we didn't see. First came the jokes, then came the roasts, petty arguments, easily forgiven, and days spent laughing until we couldn't breathe. Until the boy finally grew a pair... And the girl simply said yes."
                 });
               });
@@ -752,9 +752,6 @@ function initClickHearts() {
 }
 
 
-/* =========================================
-   8. Favorite People Data & Modal Popup Logic
-   ========================================= */
 const favoritePeopleData = {
   brideFamily: [
     {
@@ -762,8 +759,8 @@ const favoritePeopleData = {
       role: "Mother of the Bride",
       relationship: "Ayaka's Family",
       avatarImg: "assets/guest piccs/facecover/akochan.jpeg",
-      togetherImg: "assets/guest piccs/akochan.png",
-      photos: ["assets/guest piccs/akochan.png"],
+      togetherImg: "assets/guest piccs/insidephoto/akochan.png",
+      photos: ["assets/guest piccs/insidephoto/akochan.png"],
       note: "Ayaka's loving mother, the heart and warmth of the Watanabe family home."
     },
     {
@@ -771,8 +768,8 @@ const favoritePeopleData = {
       role: "Father of the Bride",
       relationship: "Ayaka's Family",
       avatarImg: "assets/guest piccs/facecover/bride'Sfather(kunihisa).jpeg",
-      togetherImg: "assets/guest piccs/kunihisa.png",
-      photos: ["assets/guest piccs/kunihisa.png"],
+      togetherImg: "assets/guest piccs/insidephoto/kunihisa.png",
+      photos: ["assets/guest piccs/insidephoto/kunihisa.png"],
       note: "Ayaka's supportive and proud father, guiding with boundless love and wisdom."
     },
     {
@@ -780,8 +777,8 @@ const favoritePeopleData = {
       role: "Brother",
       relationship: "Ayaka's Family",
       avatarImg: "assets/guest piccs/facecover/ryoma.jpeg",
-      togetherImg: "assets/guest piccs/ryoma.png",
-      photos: ["assets/guest piccs/ryoma.png"],
+      togetherImg: "assets/guest piccs/insidephoto/ryoma.png",
+      photos: ["assets/guest piccs/insidephoto/ryoma.png"],
       note: "Ayaka's brother, lifelong companion and trusted confidant."
     },
     {
@@ -789,8 +786,8 @@ const favoritePeopleData = {
       role: "Sister in Law",
       relationship: "Ayaka's Family",
       avatarImg: "assets/guest piccs/facecover/tamaki.jpeg",
-      togetherImg: "assets/guest piccs/tamaki.png",
-      photos: ["assets/guest piccs/tamaki.png"],
+      togetherImg: "assets/guest piccs/insidephoto/tamaki.png",
+      photos: ["assets/guest piccs/insidephoto/tamaki.png"],
       note: "Brings endless warmth, happiness, and sisterly bond to our family."
     },
     {
@@ -798,8 +795,8 @@ const favoritePeopleData = {
       role: "Nephew",
       relationship: "Ayaka's Family",
       avatarImg: "assets/guest piccs/facecover/shio.jpeg",
-      togetherImg: "assets/guest piccs/shio.png",
-      photos: ["assets/guest piccs/shio.png"],
+      togetherImg: "assets/guest piccs/insidephoto/shio.png",
+      photos: ["assets/guest piccs/insidephoto/shio.png"],
       note: "Beloved nephew bringing endless smiles and playful energy to every family reunion."
     },
     {
@@ -807,8 +804,8 @@ const favoritePeopleData = {
       role: "Nephew",
       relationship: "Ayaka's Family",
       avatarImg: "assets/guest piccs/facecover/so.jpeg",
-      togetherImg: "assets/guest piccs/so.png",
-      photos: ["assets/guest piccs/so.png"],
+      togetherImg: "assets/guest piccs/insidephoto/so.png",
+      photos: ["assets/guest piccs/insidephoto/so.png"],
       note: "Beloved nephew whose bright laughter and sweetness light up our home."
     },
     {
@@ -816,8 +813,8 @@ const favoritePeopleData = {
       role: "Family Cat",
       relationship: "Ayaka's Family • Pet",
       avatarImg: "assets/guest piccs/facecover/mimi.jpeg",
-      togetherImg: "assets/guest piccs/mimi.png",
-      photos: ["assets/guest piccs/mimi.png"],
+      togetherImg: "assets/guest piccs/insidephoto/mimi.png",
+      photos: ["assets/guest piccs/insidephoto/mimi.png"],
       note: "The adorable feline queen of the household, master of cozy naps."
     },
     {
@@ -825,8 +822,8 @@ const favoritePeopleData = {
       role: "Family Cat",
       relationship: "Ayaka's Family • Pet",
       avatarImg: "assets/guest piccs/facecover/Lala.jpeg",
-      togetherImg: "assets/guest piccs/Lala.png",
-      photos: ["assets/guest piccs/Lala.png"],
+      togetherImg: "assets/guest piccs/insidephoto/Lala.png",
+      photos: ["assets/guest piccs/insidephoto/Lala.png"],
       note: "Sweet and curious family cat who brings purrs and warmth everywhere."
     },
     {
@@ -834,8 +831,8 @@ const favoritePeopleData = {
       role: "Family Dog",
       relationship: "Ayaka's Family • Pet",
       avatarImg: "assets/guest piccs/facecover/merun.jpeg",
-      togetherImg: "assets/guest piccs/merun(right).png",
-      photos: ["assets/guest piccs/merun(right).png"],
+      togetherImg: "assets/guest piccs/insidephoto/merun(right).png",
+      photos: ["assets/guest piccs/insidephoto/merun(right).png"],
       note: "Loyal and energetic family pup, always ready for tail-wagging adventures."
     },
     {
@@ -843,8 +840,8 @@ const favoritePeopleData = {
       role: "Family Dog",
       relationship: "Ayaka's Family • Pet",
       avatarImg: "assets/guest piccs/facecover/peron.jpeg",
-      togetherImg: "assets/guest piccs/peron(left).png",
-      photos: ["assets/guest piccs/peron(left).png"],
+      togetherImg: "assets/guest piccs/insidephoto/peron(left).png",
+      photos: ["assets/guest piccs/insidephoto/peron(left).png"],
       note: "Playful and cuddly furry companion bringing pure joy to our days."
     }
   ],
@@ -853,18 +850,36 @@ const favoritePeopleData = {
       name: "Makisi Ayaka",
       role: "Close Friend",
       relationship: "Bride's Friend",
-      avatarImg: "assets/guest piccs/facecover/makishimom.jpeg",
-      togetherImg: "assets/guest piccs/nanaha.png",
-      photos: ["assets/guest piccs/nanaha.png"],
+      avatarImg: "assets/guest piccs/facecover/makishi.png",
+      togetherImg: "assets/guest piccs/insidephoto/nanaha.png",
+      photos: ["assets/guest piccs/insidephoto/nanaha.png"],
       note: "Cherished friend who brings wonderful memories, laughter, and support."
+    },
+    {
+      name: "Makisi mama",
+      role: "Family Friend",
+      relationship: "Bride's Friend",
+      avatarImg: "assets/guest piccs/facecover/makishi mama.jpeg",
+      togetherImg: "assets/guest piccs/facecover/makishi mama.jpeg",
+      photos: ["assets/guest piccs/facecover/makishi mama.jpeg"],
+      note: "Dear family friend bringing immense love, blessing, and joyful memories."
+    },
+    {
+      name: "Elvina",
+      role: "Close Friend",
+      relationship: "Bride's Friend",
+      avatarImg: "assets/guest piccs/facecover/elvina.jpeg",
+      togetherImg: "assets/guest piccs/insidephoto/elvina.png",
+      photos: ["assets/guest piccs/insidephoto/elvina.png"],
+      note: "Wonderful friend welcomed with open arms into our joyful celebration."
     },
     {
       name: "RIKO",
       role: "Close Friend",
       relationship: "Bride's Friend",
       avatarImg: "assets/guest piccs/facecover/riko.jpeg",
-      togetherImg: "assets/guest piccs/riko.png",
-      photos: ["assets/guest piccs/riko.png"],
+      togetherImg: "assets/guest piccs/insidephoto/riko.png",
+      photos: ["assets/guest piccs/insidephoto/riko.png"],
       note: "Dear friend who has shared so many unforgettable moments and milestones."
     },
     {
@@ -872,8 +887,8 @@ const favoritePeopleData = {
       role: "Close Friend",
       relationship: "Bride's Friend",
       avatarImg: "assets/guest piccs/facecover/sakiho(left).jpeg",
-      togetherImg: "assets/guest piccs/sakiho.png",
-      photos: ["assets/guest piccs/sakiho.png"],
+      togetherImg: "assets/guest piccs/insidephoto/sakiho.png",
+      photos: ["assets/guest piccs/insidephoto/sakiho.png"],
       note: "Always bringing smiles, deep conversations, and uplifting positive energy."
     },
     {
@@ -881,8 +896,8 @@ const favoritePeopleData = {
       role: "Close Friend",
       relationship: "Bride's Friend",
       avatarImg: "assets/guest piccs/facecover/chiaki.jpeg",
-      togetherImg: "assets/guest piccs/chiaki(right).png",
-      photos: ["assets/guest piccs/chiaki(right).png"],
+      togetherImg: "assets/guest piccs/insidephoto/chiaki(right).png",
+      photos: ["assets/guest piccs/insidephoto/chiaki(right).png"],
       note: "Trusted friend and confidante for life talks and fun celebrations."
     },
     {
@@ -890,8 +905,8 @@ const favoritePeopleData = {
       role: "Close Friend",
       relationship: "Bride's Friend",
       avatarImg: "assets/guest piccs/facecover/andrea.jpeg",
-      togetherImg: "assets/guest piccs/andrea.png",
-      photos: ["assets/guest piccs/andrea.png"],
+      togetherImg: "assets/guest piccs/insidephoto/andrea.png",
+      photos: ["assets/guest piccs/insidephoto/andrea.png"],
       note: "Wonderful friend sharing unforgettable adventures and warm companionship."
     }
   ],
@@ -901,8 +916,8 @@ const favoritePeopleData = {
       role: "Mutual Friend",
       relationship: "Our Shared Circle",
       avatarImg: "assets/guest piccs/facecover/ish.jpeg",
-      togetherImg: "assets/guest piccs/ish.png",
-      photos: ["assets/guest piccs/ish.png"],
+      togetherImg: "assets/guest piccs/insidephoto/ish.png",
+      photos: ["assets/guest piccs/insidephoto/ish.png"],
       note: "Trusted mutual friend who brings great camaraderie and joy to both of us."
     },
     {
@@ -910,8 +925,8 @@ const favoritePeopleData = {
       role: "Mutual Friend",
       relationship: "Our Shared Circle",
       avatarImg: "assets/guest piccs/facecover/nabin.png.jpg",
-      togetherImg: "assets/guest piccs/nabin.png.jpg",
-      photos: ["assets/guest piccs/nabin.png.jpg"],
+      togetherImg: "assets/guest piccs/insidephoto/nabin.png.jpg",
+      photos: ["assets/guest piccs/insidephoto/nabin.png.jpg"],
       note: "Always bringing laughter, high energy, and genuine warmth to every meetup."
     },
     {
@@ -919,8 +934,8 @@ const favoritePeopleData = {
       role: "Mutual Friend",
       relationship: "Our Shared Circle",
       avatarImg: "assets/guest piccs/facecover/sandip.heic.jpg",
-      togetherImg: "assets/guest piccs/ish:sandip:nabin cover.heic.jpg",
-      photos: ["assets/guest piccs/ish:sandip:nabin cover.heic.jpg"],
+      togetherImg: "assets/guest piccs/insidephoto/ish:sandip:nabin cover.heic.jpg",
+      photos: ["assets/guest piccs/insidephoto/ish:sandip:nabin cover.heic.jpg"],
       note: "Great friend and adventure buddy through mountain trails and celebrations."
     },
     {
@@ -928,8 +943,8 @@ const favoritePeopleData = {
       role: "Mutual Friend",
       relationship: "Our Shared Circle",
       avatarImg: "assets/guest piccs/facecover/kristian.jpeg",
-      togetherImg: "assets/guest piccs/kristian.png",
-      photos: ["assets/guest piccs/kristian.png"],
+      togetherImg: "assets/guest piccs/insidephoto/kristian.png",
+      photos: ["assets/guest piccs/insidephoto/kristian.png"],
       note: "Wonderful friend sharing great conversations and memorable gatherings."
     },
     {
@@ -937,8 +952,8 @@ const favoritePeopleData = {
       role: "Mutual Friend",
       relationship: "Our Shared Circle",
       avatarImg: "assets/guest piccs/facecover/rumon.heic.jpg",
-      togetherImg: "assets/guest piccs/rumon(cover).jpg",
-      photos: ["assets/guest piccs/rumon(cover).jpg"],
+      togetherImg: "assets/guest piccs/insidephoto/rumon(cover).jpg",
+      photos: ["assets/guest piccs/insidephoto/rumon(cover).jpg"],
       note: "Reliable friend and the life of every reunion and get-together."
     },
     {
@@ -946,18 +961,9 @@ const favoritePeopleData = {
       role: "Mutual Friend",
       relationship: "Our Shared Circle",
       avatarImg: "assets/guest piccs/facecover/iman.jpeg",
-      togetherImg: "assets/guest piccs/iman.png",
-      photos: ["assets/guest piccs/iman.png"],
+      togetherImg: "assets/guest piccs/insidephoto/iman.png",
+      photos: ["assets/guest piccs/insidephoto/iman.png"],
       note: "Cherished mutual friend whose presence makes every occasion special."
-    },
-    {
-      name: "Iman's friend",
-      role: "Mutual Friend",
-      relationship: "Our Shared Circle",
-      avatarImg: "assets/guest piccs/facecover/elvina.jpeg",
-      togetherImg: "assets/guest piccs/elvina.png",
-      photos: ["assets/guest piccs/elvina.png"],
-      note: "Warm friend welcomed with open arms into our celebration."
     }
   ],
   groomFamily: [
@@ -965,9 +971,9 @@ const favoritePeopleData = {
       name: "Mina Kharel",
       role: "Mother of the Groom",
       relationship: "Ashis's Family",
-      avatarImg: "assets/guest piccs/facecover/parents.jpg",
-      togetherImg: "assets/guest piccs/parents.jpg",
-      photos: ["assets/guest piccs/parents.jpg"],
+      avatarImg: "assets/guest piccs/facecover/minakharel.heic.jpg",
+      togetherImg: "assets/guest piccs/insidephoto/parents.jpg",
+      photos: ["assets/guest piccs/insidephoto/parents.jpg"],
       note: "Ashis's loving mother, a pillar of care, warmth, and unconditional devotion."
     },
     {
@@ -975,8 +981,8 @@ const favoritePeopleData = {
       role: "Father of the Groom",
       relationship: "Ashis's Family",
       avatarImg: "assets/guest piccs/facecover/prajapatikharel.JPG",
-      togetherImg: "assets/guest piccs/prajapatikharel.JPG",
-      photos: ["assets/guest piccs/prajapatikharel.JPG"],
+      togetherImg: "assets/guest piccs/insidephoto/prajapatikharel.JPG",
+      photos: ["assets/guest piccs/insidephoto/prajapatikharel.JPG"],
       note: "Ashis's guiding father, inspiring with wisdom, strength, and integrity."
     },
     {
@@ -984,8 +990,8 @@ const favoritePeopleData = {
       role: "Brother",
       relationship: "Ashis's Family",
       avatarImg: "assets/guest piccs/facecover/ayush.png.jpg",
-      togetherImg: "assets/guest piccs/ayush.png.jpg",
-      photos: ["assets/guest piccs/ayush.png.jpg"],
+      togetherImg: "assets/guest piccs/insidephoto/ayush.png.jpg",
+      photos: ["assets/guest piccs/insidephoto/ayush.png.jpg"],
       note: "Inseparable brother and best friend through every chapter of life."
     },
     {
@@ -993,8 +999,8 @@ const favoritePeopleData = {
       role: "Beloved Grandparents",
       relationship: "Ashis's Family",
       avatarImg: "assets/guest piccs/facecover/grandparents.jpg",
-      togetherImg: "assets/guest piccs/grandparents(cover).jpg",
-      photos: ["assets/guest piccs/grandparents(cover).jpg"],
+      togetherImg: "assets/guest piccs/insidephoto/grandparents(cover).jpg",
+      photos: ["assets/guest piccs/insidephoto/grandparents(cover).jpg"],
       note: "Our cherished elders whose blessings and love guide our journey."
     },
     {
@@ -1002,8 +1008,8 @@ const favoritePeopleData = {
       role: "Uncle",
       relationship: "Ashis's Family",
       avatarImg: "assets/guest piccs/facecover/shivakharel.jpg",
-      togetherImg: "assets/guest piccs/shivakharel.jpg",
-      photos: ["assets/guest piccs/shivakharel.jpg"],
+      togetherImg: "assets/guest piccs/insidephoto/shivakharel.jpg",
+      photos: ["assets/guest piccs/insidephoto/shivakharel.jpg"],
       note: "Respected uncle bringing wisdom, support, and family pride."
     },
     {
@@ -1011,8 +1017,8 @@ const favoritePeopleData = {
       role: "Aunt",
       relationship: "Ashis's Family",
       avatarImg: "assets/guest piccs/facecover/kalpanakharel.jpg",
-      togetherImg: "assets/guest piccs/shivakharel.jpg",
-      photos: ["assets/guest piccs/shivakharel.jpg"],
+      togetherImg: "assets/guest piccs/facecover/kalpanakharel.jpg",
+      photos: ["assets/guest piccs/facecover/kalpanakharel.jpg"],
       note: "Loving aunt whose warmth and care brighten every family gathering."
     },
     {
@@ -1020,9 +1026,9 @@ const favoritePeopleData = {
       role: "Cousin",
       relationship: "Ashis's Family",
       avatarImg: "assets/guest piccs/facecover/prabesh.jpeg",
-      togetherImg: "assets/guest piccs/prabesh.cover.png.jpg",
-      photos: ["assets/guest piccs/prabesh.cover.png.jpg"],
-      hiddenImg: "assets/guest piccs/prabesh.hidden.jpg",
+      togetherImg: "assets/guest piccs/insidephoto/prabesh.cover.png.jpg",
+      photos: ["assets/guest piccs/insidephoto/prabesh.cover.png.jpg"],
+      hiddenImg: "assets/guest piccs/insidephoto/prabesh.hidden.jpg",
       note: "Cousin and close buddy sharing laughter, brotherhood, and memories."
     },
     {
@@ -1030,8 +1036,8 @@ const favoritePeopleData = {
       role: "Cousin",
       relationship: "Ashis's Family",
       avatarImg: "assets/guest piccs/facecover/prasansa.jpg",
-      togetherImg: "assets/guest piccs/Prasansha.png.jpg",
-      photos: ["assets/guest piccs/Prasansha.png.jpg"],
+      togetherImg: "assets/guest piccs/insidephoto/Prasansha.png.jpg",
+      photos: ["assets/guest piccs/insidephoto/Prasansha.png.jpg"],
       note: "Wonderful cousin who brings joy, smiles, and sweetness to the family circle."
     }
   ],
@@ -1041,36 +1047,27 @@ const favoritePeopleData = {
       role: "Close Friend",
       relationship: "Groom's Friend",
       avatarImg: "assets/guest piccs/facecover/ryo..jpg",
-      togetherImg: "assets/guest piccs/Ryo.cover.jpg",
-      photos: ["assets/guest piccs/Ryo.cover.jpg"],
+      togetherImg: "assets/guest piccs/insidephoto/Ryo.cover.jpg",
+      photos: ["assets/guest piccs/insidephoto/Ryo.cover.jpg"],
       note: "Great buddy for travel adventures, gatherings, and unforgettable times."
     },
     {
       name: "ChaCha",
       role: "Close Friend",
       relationship: "Groom's Friend",
-      avatarImg: "assets/guest piccs/facecover/muktiramsapkota.jpg",
-      togetherImg: "assets/guest piccs/puktiramsapkotacover.jpeg",
-      photos: ["assets/guest piccs/puktiramsapkotacover.jpeg"],
+      avatarImg: "assets/guest piccs/facecover/chacha.jpg",
+      togetherImg: "assets/guest piccs/insidephoto/chachacover.JPG",
+      photos: ["assets/guest piccs/insidephoto/chachacover.JPG"],
       note: "Valued friend always bringing great energy and memorable moments."
-    },
-    {
-      name: "Mama",
-      role: "Close Friend",
-      relationship: "Groom's Friend",
-      avatarImg: "assets/guest piccs/facecover/muktiramsapkota.jpg",
-      togetherImg: "assets/guest piccs/muktiramsapkota.jpg",
-      photos: ["assets/guest piccs/muktiramsapkota.jpg"],
-      note: "Cherished friend and constant source of support and good laughs."
     },
     {
       name: "Sandesh",
       role: "Childhood Friend",
       relationship: "Groom's Friend",
       avatarImg: "assets/guest piccs/facecover/sandesh.jpeg",
-      togetherImg: "assets/guest piccs/sandesh.heic.jpg",
-      photos: ["assets/guest piccs/sandesh.heic.jpg"],
-      hiddenImg: "assets/guest piccs/subhahidden.png",
+      togetherImg: "assets/guest piccs/insidephoto/sandesh.heic.jpg",
+      photos: ["assets/guest piccs/insidephoto/sandesh.heic.jpg"],
+      hiddenImg: "assets/guest piccs/insidephoto/subhahidden.png",
       note: "Childhood friend through the years, sharing roots and lifelong brotherhood."
     },
     {
@@ -1078,8 +1075,8 @@ const favoritePeopleData = {
       role: "Childhood Friend",
       relationship: "Groom's Friend",
       avatarImg: "assets/guest piccs/facecover/20190330_193606.jpg",
-      togetherImg: "assets/guest piccs/Screenshot_20210129-134711_Facebook.jpg",
-      photos: ["assets/guest piccs/Screenshot_20210129-134711_Facebook.jpg"],
+      togetherImg: "assets/guest piccs/insidephoto/Screenshot_20210129-134711_Facebook.jpg",
+      photos: ["assets/guest piccs/insidephoto/Screenshot_20210129-134711_Facebook.jpg"],
       note: "Childhood friend who grew up together through all life's adventures."
     }
   ]
@@ -1115,8 +1112,8 @@ function openPersonModal(person, startWithHidden = false) {
 
   if (!overlay) return;
 
-  // Single primary image
-  const primaryImg = person.avatarImg || person.togetherImg || (person.photos && person.photos[0]) || "assets2/Sakura2shot.jpg";
+  // Single primary image (prefer togetherImg / insidephoto, fallback to avatarImg / facecover)
+  const primaryImg = person.togetherImg || (person.photos && person.photos[0]) || person.avatarImg || "assets2/Sakura2shot.jpg";
   let hiddenImageSrc = person.hiddenImg || null;
 
   // Current active displayed image
@@ -1277,9 +1274,9 @@ function initPartyPage() {
         name: "Ashis & Ayaka",
         role: "The Bride & Groom",
         relationship: "The Happy Couple",
-        avatarImg: "assets/guest piccs/facecover/IMG_2267.heic.jpg",
-        togetherImg: "assets/guest piccs/bridegroom2shot.jpg",
-        photos: ["assets/guest piccs/bridegroom2shot.jpg"],
+        avatarImg: "assets/guest piccs/facecover/bridegroom2shot 1.51.14.jpg",
+        togetherImg: "assets/guest piccs/insidephoto/couple2shot cover.jpg",
+        photos: ["assets/guest piccs/insidephoto/couple2shot cover.jpg"],
         note: "Destiny had a plan we didn't see. First came the jokes, then came the roasts, petty arguments, easily forgiven, and days spent laughing until we couldn't breathe. Until the boy finally grew a pair... And the girl simply said yes."
       });
     });
