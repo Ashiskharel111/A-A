@@ -1381,6 +1381,200 @@ footer.site-footer {
   line-height: 1.6;
 }
 
+/* =========================================
+   Couple 2-Shot Top Centerpiece (Ashis & Ayaka)
+   ========================================= */
+.couple-top-centerpiece-container {
+  display: flex;
+  justify-content: center;
+  margin: 0 auto 56px;
+  max-width: 740px;
+  width: 100%;
+}
+
+.couple-top-centerpiece-card {
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border: 1.5px solid var(--template-accent-soft);
+  border-radius: 32px;
+  padding: 32px 36px;
+  display: flex;
+  align-items: center;
+  gap: 32px;
+  box-shadow: 0 16px 48px rgba(138, 90, 43, 0.12), 0 2px 8px rgba(0, 0, 0, 0.04);
+  cursor: pointer;
+  width: 100%;
+  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.35s ease, border-color 0.35s ease;
+}
+
+.couple-top-centerpiece-card:hover {
+  transform: translateY(-6px) scale(1.015);
+  box-shadow: 0 24px 60px rgba(138, 90, 43, 0.22);
+  border-color: var(--template-accent);
+}
+
+.couple-photo-frame {
+  position: relative;
+  width: 140px;
+  height: 140px;
+  min-width: 140px;
+  border-radius: 50%;
+  padding: 5px;
+  background: linear-gradient(135deg, #d4af37, #f6edd7, #8a5a2b);
+  box-shadow: 0 8px 24px rgba(138, 90, 43, 0.2);
+}
+
+.couple-photo-img {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  object-fit: cover;
+  display: block;
+}
+
+.couple-badge {
+  position: absolute;
+  bottom: -6px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: var(--template-accent);
+  color: #ffffff;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  padding: 3px 12px;
+  border-radius: 99px;
+  white-space: nowrap;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.18);
+}
+
+.couple-details {
+  flex: 1;
+  text-align: left;
+}
+
+.couple-tag {
+  display: inline-block;
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+  color: var(--template-accent);
+  margin-bottom: 4px;
+}
+
+.couple-name {
+  font-size: 32px;
+  line-height: 1.15;
+  color: var(--template-text);
+  margin-bottom: 4px;
+}
+
+.couple-date {
+  font-size: 13px;
+  color: var(--template-muted);
+  font-weight: 500;
+  margin-bottom: 10px;
+}
+
+.couple-quote {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: 16px;
+  color: var(--template-text);
+  line-height: 1.45;
+  margin-bottom: 10px;
+}
+
+.couple-view-prompt {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--template-accent);
+  background: var(--template-surface-accent);
+  padding: 4px 12px;
+  border-radius: 99px;
+  transition: background 0.2s ease;
+}
+
+.couple-top-centerpiece-card:hover .couple-view-prompt {
+  background: #f6ebd7;
+}
+
+@media (max-width: 680px) {
+  .couple-top-centerpiece-card {
+    flex-direction: column;
+    text-align: center;
+    padding: 28px 20px;
+    gap: 20px;
+  }
+  .couple-details {
+    text-align: center;
+  }
+}
+
+/* Drawer Couple Centerpiece */
+.drawer-couple-centerpiece {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  background: rgba(255, 255, 255, 0.9);
+  border: 1.5px solid var(--template-accent-soft);
+  border-radius: 20px;
+  padding: 16px 20px;
+  margin-top: 20px;
+  margin-bottom: 16px;
+  cursor: pointer;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.drawer-couple-centerpiece:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 24px rgba(138, 90, 43, 0.16);
+  border-color: var(--template-accent);
+}
+
+.drawer-couple-avatar {
+  width: 72px;
+  height: 72px;
+  min-width: 72px;
+  border-radius: 50%;
+  padding: 3px;
+  background: linear-gradient(135deg, #d4af37, var(--template-accent));
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.drawer-couple-avatar img {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  object-fit: cover;
+  display: block;
+}
+
+.drawer-couple-info {
+  flex: 1;
+}
+
+.drawer-couple-title {
+  font-family: var(--font-display);
+  font-size: 20px;
+  font-weight: 500;
+  color: var(--template-text);
+  line-height: 1.2;
+}
+
+.drawer-couple-hint {
+  font-size: 11px;
+  color: var(--template-accent);
+  font-weight: 600;
+  margin-top: 2px;
+}
+
 .party-columns-container {
   display: grid;
   grid-template-columns: 1fr 1.1fr 1fr;
